@@ -3,11 +3,11 @@
 // @match         https://tracker.moodle.org/browse/*
 // @name          Pull Request Helper
 // @description   Makes copy and paste easier for Moodle integrators
-// @author        Dan Poltawski
-// @homepage      http://github.com/danpoltawski/userscripts-moodle
-// @namespace     http://userscripts.danpoltawski.co.uk
-// @downloadURL   https://github.com/danpoltawski/userscripts-moodle/raw/master/pull-request-helper.user.js
-// @version       3.1.0.1
+// @author        Andrwe Nicols
+// @homepage      http://github.com/andrewnicols/userscripts-moodle
+// @namespace     http://userscripts.andrewrn.co.uk
+// @downloadURL   https://github.com/andrewnicols/userscripts-moodle/raw/forkpull-request-helper.user.js
+// @version       3.1.0.2
 // ==/UserScript==
 
 var userScript = function() {
