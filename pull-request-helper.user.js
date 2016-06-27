@@ -7,7 +7,7 @@
 // @homepage      http://github.com/danpoltawski/userscripts-moodle
 // @namespace     http://userscripts.danpoltawski.co.uk
 // @downloadURL   https://github.com/danpoltawski/userscripts-moodle/raw/master/pull-request-helper.user.js
-// @version       1.3.0
+// @version       3.1.0.1
 // ==/UserScript==
 
 var userScript = function() {
@@ -19,21 +19,29 @@ var userScript = function() {
                 branchname: 'master'
             },
             {
+                shortname: '31',
+                customField: '13113',
+                branchname: 'MOODLE_31_STABLE'
+            },
+            {
                 shortname: '30',
                 customField: '12911',
                 branchname: 'MOODLE_30_STABLE'
             },
             {
+                security: true,
                 shortname: '29',
                 customField: '12311',
                 branchname: 'MOODLE_29_STABLE'
             },
             {
+                deprecated: true,
                 shortname: '28',
                 customField: '12013',
                 branchname: 'MOODLE_28_STABLE'
             },
             {
+                security: true,
                 shortname: '27',
                 customField: '11710',
                 branchname: 'MOODLE_27_STABLE'
@@ -61,10 +69,17 @@ var userScript = function() {
             userScriptContent.branches.forEach(function(branch) {
                 branch.customFieldNode = AJS.$('#customfield_' + branch.customField + '-val');
                 if (branch.customFieldNode.length) {
-                    var remoteBranchName = branch.customFieldNode.text().trim()
+                    var remoteBranchName = branch.customFieldNode.text().trim(),
+                        style = ''
                         ;
+
+                    if (branch.deprecated) {
+                        style = 'background-color: red';
+                    } else if (branch.security) {
+                        style = 'background-color: orange';
+                    }
                     cs +=
-                        '<dl>' +
+                        '<dl style="' + style + '">' +
                             '<dt>' +
                                 branch.shortname +
                                 '<br>' +
@@ -121,6 +136,7 @@ var userScript = function() {
                     var remoteBranchName = branch.customFieldNode.text().trim();
                     if (travisLink) {
                         AJS.$.ajax({
+                            method: 'GET',
                             dataType: "json",
                             url: 'https://api.travis-ci.org/repos/' + repoStructure[1] + '/moodle/branches/' + remoteBranchName,
                             headers: {
