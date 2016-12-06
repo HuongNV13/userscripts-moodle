@@ -3,11 +3,11 @@
 // @match         https://tracker.moodle.org/browse/*
 // @name          Pull Request Helper
 // @description   Makes copy and paste easier for Moodle integrators
-// @author        Andrwe Nicols
+// @author        Andrew Nicols
 // @homepage      http://github.com/andrewnicols/userscripts-moodle
 // @namespace     http://userscripts.andrewrn.co.uk
 // @downloadURL   https://github.com/andrewnicols/userscripts-moodle/raw/fork/pull-request-helper.user.js
-// @version       3.1.0.3
+// @version       3.2.0.0
 // ==/UserScript==
 
 var userScript = function() {
@@ -17,6 +17,11 @@ var userScript = function() {
                 shortname: 'master',
                 customField: '10111',
                 branchname: 'master'
+            },
+            {
+                shortname: '32',
+                customField: '13911',
+                branchname: 'MOODLE_32_STABLE'
             },
             {
                 shortname: '31',
