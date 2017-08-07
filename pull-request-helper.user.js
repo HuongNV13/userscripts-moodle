@@ -7,7 +7,7 @@
 // @homepage      http://github.com/andrewnicols/userscripts-moodle
 // @namespace     http://userscripts.andrewrn.co.uk
 // @downloadURL   https://github.com/andrewnicols/userscripts-moodle/raw/fork/pull-request-helper.user.js
-// @version       3.3.0.0
+// @version       3.3.0.1
 // ==/UserScript==
 
 var userScript = function() {
@@ -97,7 +97,7 @@ var userScript = function() {
                             '</dt>' +
                             '<dd>' +
                                 '<pre>' +
-                                    'git checkout ' + branch.branchname + "\n" +
+                                    'git checkout ' + branch.branchname + " && " +
                                     'git pull ' + gitrepo + ' ' + remoteBranchName + "\n" +
                                 '</pre>' +
                             '</dd>' +
