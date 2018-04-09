@@ -7,7 +7,7 @@
 // @homepage      http://github.com/andrewnicols/userscripts-moodle
 // @namespace     http://userscripts.andrewrn.co.uk
 // @downloadURL   https://github.com/andrewnicols/userscripts-moodle/raw/fork/pull-request-helper.user.js
-// @version       3.4.0.1
+// @version       3.4.0.2
 // ==/UserScript==
 
 var userScript = function() {
@@ -78,7 +78,7 @@ var userScript = function() {
             var baseDate = new Date();
             var repoStructure = gitrepo.match('^.*:\/\/github.com\/([^/]*)\/moodle.*$');
             if (repoStructure) {
-                travisLink = 'https://travis-ci.org/' + repoStructure[1] + '/moodle.svg?x=' + baseDate->getTime() + '&branch=';
+                travisLink = 'https://travis-ci.org/' + repoStructure[1] + '/moodle.svg?x=' + baseDate.getTime() + '&branch=';
                 travisTargetLink = 'https://travis-ci.org/' + repoStructure[1] + '/moodle/builds/';
             }
 
