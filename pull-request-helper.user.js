@@ -7,7 +7,7 @@
 // @homepage      http://github.com/andrewnicols/userscripts-moodle
 // @namespace     http://userscripts.andrewrn.co.uk
 // @downloadURL   https://github.com/andrewnicols/userscripts-moodle/raw/fork/pull-request-helper.user.js
-// @version       3.11.0.0
+// @version       3.11.0.1
 // ==/UserScript==
 
 var userScript = function() {
@@ -105,17 +105,10 @@ var userScript = function() {
                 return;
             }
 
-            var cs = '',
-                travisLink = '',
-                travisTargetLink = ''
-                ;
+            # https://github.blog/2021-09-01-improving-git-protocol-security-github/#no-more-unauthenticated-git
+            gitrepo = gitrepo.replace('git://github.com', 'https://github.com');
 
-            var baseDate = new Date();
-            var repoStructure = gitrepo.match('^.*:\/\/github.com\/([^/]*)\/moodle.*$');
-            if (repoStructure) {
-                travisLink = 'https://travis-ci.org/' + repoStructure[1] + '/moodle.svg?x=' + baseDate.getTime() + '&branch=';
-                travisTargetLink = 'https://travis-ci.org/' + repoStructure[1] + '/moodle/builds/';
-            }
+            var cs = '';
 
             userScriptContent.branches.forEach(function(branch) {
                 branch.customFieldNode = AJS.$('#customfield_' + branch.customField + '-val');
@@ -134,7 +127,6 @@ var userScript = function() {
                             '<dt>' +
                                 branch.shortname +
                                 '<br>' +
-                                '<a id="travis_' + remoteBranchName + '"></a>' +
                             '</dt>' +
                             '<dd>' +
                                 '<pre>' +
@@ -185,26 +177,6 @@ var userScript = function() {
             userScriptContent.branches.forEach(function(branch) {
                 if (branch.customFieldNode.length) {
                     var remoteBranchName = branch.customFieldNode.text().trim();
-                    if (travisLink) {
-                        AJS.$.ajax({
-                            method: 'GET',
-                            dataType: "json",
-                            url: 'https://api.travis-ci.org/repos/' + repoStructure[1] + '/moodle/branches/' + remoteBranchName,
-                            headers: {
-                                Accept: 'application/vnd.travis-ci.2+json'
-                            },
-                            success: function(data) {
-                                if (typeof data.branch === 'undefined' || typeof data.branch.id === 'undefined') {
-                                    return;
-                                }
-                                AJS.$('#travis_' + remoteBranchName)
-                                    .attr('href', travisTargetLink + data.branch.id)
-                                    .attr('target', '_blank')
-                                    .html('<img src="' + travisLink + remoteBranchName + '">')
-                                    ;
-                            }
-                        });
-                    }
                 }
             });
         },
