@@ -105,7 +105,7 @@ var userScript = function() {
                 return;
             }
 
-            # https://github.blog/2021-09-01-improving-git-protocol-security-github/#no-more-unauthenticated-git
+            // https://github.blog/2021-09-01-improving-git-protocol-security-github/#no-more-unauthenticated-git
             gitrepo = gitrepo.replace('git://github.com', 'https://github.com');
 
             var cs = '';
