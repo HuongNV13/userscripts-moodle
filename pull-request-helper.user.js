@@ -19,6 +19,11 @@ var userScript = function() {
                 branchname: 'master'
             },
             {
+                shortname: '403',
+                customField: '16621',
+                branchname: 'MOODLE_403_STABLE'
+            },
+            {
                 shortname: '402',
                 customField: '16510',
                 branchname: 'MOODLE_402_STABLE'
